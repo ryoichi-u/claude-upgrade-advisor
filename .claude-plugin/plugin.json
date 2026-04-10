@@ -1,0 +1,21 @@
+{
+  "name": "claude-upgrade-advisor",
+  "version": "0.1.0",
+  "description": "Analyzes Claude Code release notes against your setup to recommend feature adoption, deprecation fixes, and configuration improvements",
+  "author": {
+    "name": "Ryoichi Ueno",
+    "url": "https://github.com/ryoichi-u"
+  },
+  "homepage": "https://github.com/ryoichi-u/claude-upgrade-advisor",
+  "repository": "https://github.com/ryoichi-u/claude-upgrade-advisor",
+  "license": "MIT",
+  "keywords": [
+    "upgrade",
+    "release-notes",
+    "best-practices",
+    "feature-adoption",
+    "deprecation",
+    "optimization",
+    "i18n"
+  ]
+}

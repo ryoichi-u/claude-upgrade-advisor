@@ -1,0 +1,17 @@
+{
+  "description": "Optional session-start check for release note cache freshness. Non-blocking, no network calls.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/cache-manager.sh check-staleness",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
