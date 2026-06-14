@@ -69,9 +69,12 @@ fetch_releases_gh() {
 
 fetch_releases_curl() {
   local token="${GITHUB_TOKEN:-}"
-  local auth_header=""
+  # 認証ヘッダは配列で組み立て、eval を使わずに安全に展開する
+  # （eval + 未クォート展開はトークン値にシェルメタ文字が含まれると
+  #   コマンドインジェクションを許してしまうため）
+  local -a auth_args=()
   if [[ -n "${token}" ]]; then
-    auth_header="-H \"Authorization: Bearer ${token}\""
+    auth_args=(-H "Authorization: Bearer ${token}")
   fi
 
   local page=1
@@ -79,10 +82,10 @@ fetch_releases_curl() {
 
   while true; do
     local response
-    response=$(eval curl -sS \
+    response=$(curl -sS \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      ${auth_header} \
+      "${auth_args[@]}" \
       "https://api.github.com/repos/${REPO}/releases?per_page=30&page=${page}")
 
     # Check for empty response or error
